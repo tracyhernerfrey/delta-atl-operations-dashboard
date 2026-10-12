@@ -1,7 +1,622 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>When Should Delta ATL Escalate? | ATL Operations Intelligence</title><style>
-:root{--ink:#101f38;--muted:#586a82;--bg:#eef2f7;--blue:#102d54;--light:#91a9c6;--red:#c8102e;--line:#d9e1eb;--green:#2b7868}*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}header{background:linear-gradient(110deg,#071c3b 0%,#102e56 75%,#173f70 100%);border-bottom:5px solid #c8102e;color:white;padding:27px max(22px,calc((100vw - 1250px)/2));}header .eyebrow{font-size:11px;letter-spacing:2.3px;text-transform:uppercase;color:#d9e7f6;font-weight:750}h1{font-size:clamp(24px,3vw,34px);margin:9px 0 5px}header p{margin:0;color:#d0dceb;font-size:14px}.shell{max-width:1250px;margin:0 auto;padding:22px}.hero{display:grid;grid-template-columns:1.7fr 1fr;gap:15px;margin-bottom:18px}.panel,.takeaway{background:white;border:1px solid var(--line);border-radius:12px;padding:22px;box-shadow:0 2px 10px #15233d08}.takeaway{border-left:5px solid var(--red)}.label{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);font-weight:700}.big{font-size:clamp(24px,3vw,34px);font-weight:760;line-height:1.2;margin:9px 0}.sub{color:var(--muted);font-size:13px;line-height:1.5}.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin-bottom:18px}.toolbar label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:650}.toolbar select{background:white;border:1px solid #c7d3e1;border-radius:8px;padding:9px 11px;color:var(--ink);min-width:170px}.three{display:grid;grid-template-columns:1.12fr 1fr 1fr;gap:15px}.panel h2{font-size:16px;margin:0 0 6px}.panel .desc{font-size:12px;color:var(--muted);line-height:1.5;min-height:42px;margin:0 0 15px}.legend{display:flex;gap:13px;font-size:11px;color:var(--muted);margin:10px 0 17px;flex-wrap:wrap}.dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px}.bar-group{margin-bottom:22px}.group-label{font-size:12px;font-weight:650;margin-bottom:9px}.bar-row{display:grid;grid-template-columns:91px 1fr 50px;gap:7px;align-items:center;font-size:11px;margin:8px 0}.track{height:20px;background:#f0f3f8;border-radius:4px;position:relative;overflow:hidden}.fill{height:100%;border-radius:4px;transition:width .2s}.number{font-weight:750;text-align:right}.chart-note{border-top:1px solid var(--line);padding-top:12px;font-size:12px;color:var(--muted);line-height:1.5}.plot{width:100%;height:245px;overflow:visible}.plot text{font-family:inherit;fill:#5e6d80;font-size:10px}.plot .grid{stroke:#e7edf4;stroke-width:1}.plot .area{fill:#e6ecf6}.plot .line{fill:none;stroke:var(--blue);stroke-width:2.5;stroke-linejoin:round}.plot .point{fill:var(--blue);stroke:white;stroke-width:1.5;cursor:pointer}.plot .bar{fill:var(--blue);cursor:pointer}.plot .bar:hover,.plot .point:hover{filter:brightness(1.35)}.brandmark{display:inline-flex;align-items:center;gap:12px;margin-bottom:6px}.brandmark .triangle{width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-bottom:21px solid #c8102e;transform:rotate(0deg)}.brandmark .wordmark{font-size:19px;font-weight:850;letter-spacing:3px}.panel{border-top:2px solid #d9e3f0}.panel h2{color:#102d54}.takeaway .big{letter-spacing:-.6px}.tooltip{background:#f0f5fb;border-radius:8px;padding:10px;font-size:12px;min-height:60px;line-height:1.5;margin-top:10px}.metric{font-weight:750;color:var(--blue)}.footer{color:var(--muted);font-size:12px;line-height:1.6;margin:17px 0 5px}.action{font-size:13px;line-height:1.5}.action strong{color:var(--blue)}@media(max-width:960px){.three{grid-template-columns:1fr 1fr}.three .panel:first-child{grid-column:1/-1}}@media(max-width:650px){.hero,.three{grid-template-columns:1fr}.three .panel:first-child{grid-column:auto}.shell{padding:12px}.panel,.takeaway{padding:17px}}
-</style></head><body><header><div class="brandmark"><span class="triangle" aria-hidden="true"></span><span class="wordmark">DELTA</span></div><div class="eyebrow">ATL Operations Intelligence · Decision Support · July 2026</div><h1>Disruption Readiness | Atlanta Hub</h1><p>For Delta's VP of Airport Operations responsible for ATL · Historical BTS flight records</p></header><main class="shell"><section class="hero"><div class="takeaway"><div class="label">The Decision</div><div class="big">When Should Delta ATL Escalate?</div><div class="sub">Use unusually high cancellation rates and concentrated disruption windows to prioritize investigation and coordinate potential backup resources. This dashboard identifies patterns, not their underlying causes.</div></div><div class="panel"><div class="label">July 18–20 · Delta at ATL</div><div class="big" id="headline">9.09% Cancelled</div><div class="sub" id="headlineDetail">191 cancellations / 2,102 scheduled departures</div><div class="sub" style="margin-top:12px">Rest-of-July Baseline: <strong>1.22%</strong> (240 / 19,672 flights)</div></div></section><div class="toolbar"><label>Comparison Metric<select id="metric"><option value="all">All cancellations</option><option value="carrier">Carrier-coded cancellations (A)</option></select></label><label>Daily Chart Metric<select id="dailyMetric"><option value="Cancellation_Rate">Cancellation rate (%)</option><option value="Average_Departure_Delay">Average departure delay (min)</option></select></label><label>Hourly Chart Metric<select id="hourMetric"><option value="Cancellation_Rate">Cancellation rate (%)</option><option value="Average_Departure_Delay">Average departure delay (min)</option></select></label></div><section class="three"><article class="panel"><h2>1 · Delta's Disruption Impact vs. Other Airlines</h2><p class="desc">Compare cancellation rates for Delta and all other carriers departing ATL, with scheduled-flight denominators.</p><div class="legend"><span><i class="dot" style="background:var(--blue)"></i>Delta</span><span><i class="dot" style="background:var(--light)"></i>Other airlines</span></div><div id="comparison"></div><div class="chart-note" id="comparisonNote"></div></article><article class="panel"><h2>2 · Disruption and Recovery</h2><p class="desc">Delta departures at ATL, July 17–23. Hover or select a point for exact counts and rates.</p><svg class="plot" id="dailyPlot" viewBox="0 0 360 245" role="img" aria-label="Daily Delta ATL performance chart"></svg><div class="tooltip" id="dailyTip" aria-live="polite"></div></article><article class="panel"><h2>3 · Vulnerable Departure Hours</h2><p class="desc">Delta flights scheduled to depart ATL on July 19. Hourly averages exclude cancelled flights for delay calculations.</p><svg class="plot" id="hourPlot" viewBox="0 0 360 245" role="img" aria-label="Hourly Delta ATL performance chart"></svg><div class="tooltip" id="hourTip" aria-live="polite"></div></article></section><div class="panel" style="margin-top:16px"><div class="label">Operational Use and Limitations</div><p class="action"><strong>Recommended action:</strong> Add a post-disruption morning readiness review for ATL to check aircraft and crew availability, identify vulnerable departures, and coordinate possible backup resources. <strong>Important:</strong> The data does not establish aircraft or crew shortages as causes. Delta's ATL hub scale, schedule mix and weather exposure differ from other carriers, so the comparison is descriptive, not a causal performance ranking.</p></div><div class="footer">Independent student analysis · Delta-inspired visual design, not an official Delta Air Lines product. Source: Bureau of Transportation Statistics, Reporting Carrier On-Time Performance; analysis exports from Delta_Flight_Analysis_Final.R. All cancellation rates = cancelled departures / scheduled departures. “Other airlines” combines all non-Delta operating carriers departing ATL. July 18–20 is compared with all other July 2026 dates. Daily/hourly views cover Delta only. T-100 route-month passenger totals are not used in these flight-based charts. Offline, self-contained dashboard; source data embedded at export time.</div></main><script>const DATA={"comparison": [{"Airline_Group": "Delta", "Period": "July 18-20", "Flights": 2102, "Cancellations": 191, "Cancellation_Rate": 9.09, "Carrier_Cancellations": 162}, {"Airline_Group": "Delta", "Period": "Rest of July", "Flights": 19672, "Cancellations": 240, "Cancellation_Rate": 1.22, "Carrier_Cancellations": 141}, {"Airline_Group": "Other Airlines", "Period": "July 18-20", "Flights": 591, "Cancellations": 41, "Cancellation_Rate": 6.94, "Carrier_Cancellations": 12}, {"Airline_Group": "Other Airlines", "Period": "Rest of July", "Flights": 5703, "Cancellations": 207, "Cancellation_Rate": 3.63, "Carrier_Cancellations": 55}], "daily": [{"FL_DATE": "2026-07-17", "Flights": 742, "Cancellations": 13, "Cancellation_Rate": 1.75, "Average_Departure_Delay": 50.3}, {"FL_DATE": "2026-07-18", "Flights": 621, "Cancellations": 55, "Cancellation_Rate": 8.86, "Average_Departure_Delay": 28.4}, {"FL_DATE": "2026-07-19", "Flights": 740, "Cancellations": 103, "Cancellation_Rate": 13.92, "Average_Departure_Delay": 58.1}, {"FL_DATE": "2026-07-20", "Flights": 741, "Cancellations": 33, "Cancellation_Rate": 4.45, "Average_Departure_Delay": 13.3}, {"FL_DATE": "2026-07-21", "Flights": 701, "Cancellations": 30, "Cancellation_Rate": 4.28, "Average_Departure_Delay": 17.8}, {"FL_DATE": "2026-07-22", "Flights": 704, "Cancellations": 7, "Cancellation_Rate": 0.99, "Average_Departure_Delay": 5.5}, {"FL_DATE": "2026-07-23", "Flights": 742, "Cancellations": 0, "Cancellation_Rate": 0.0, "Average_Departure_Delay": 8.3}], "hourly": [{"Departure_Hour": 7, "Scheduled_Flights": 35, "Cancellations": 9, "Cancellation_Rate": 25.7, "Carrier_Cancellations": 9, "Average_Departure_Delay": 18.2}, {"Departure_Hour": 8, "Scheduled_Flights": 55, "Cancellations": 9, "Cancellation_Rate": 16.4, "Carrier_Cancellations": 9, "Average_Departure_Delay": 21.8}, {"Departure_Hour": 9, "Scheduled_Flights": 58, "Cancellations": 7, "Cancellation_Rate": 12.1, "Carrier_Cancellations": 6, "Average_Departure_Delay": 14.4}, {"Departure_Hour": 10, "Scheduled_Flights": 40, "Cancellations": 2, "Cancellation_Rate": 5.0, "Carrier_Cancellations": 2, "Average_Departure_Delay": 15.2}, {"Departure_Hour": 11, "Scheduled_Flights": 54, "Cancellations": 6, "Cancellation_Rate": 11.1, "Carrier_Cancellations": 6, "Average_Departure_Delay": 11.0}, {"Departure_Hour": 12, "Scheduled_Flights": 39, "Cancellations": 7, "Cancellation_Rate": 17.9, "Carrier_Cancellations": 6, "Average_Departure_Delay": 14.6}, {"Departure_Hour": 13, "Scheduled_Flights": 39, "Cancellations": 3, "Cancellation_Rate": 7.7, "Carrier_Cancellations": 3, "Average_Departure_Delay": 54.5}, {"Departure_Hour": 14, "Scheduled_Flights": 33, "Cancellations": 4, "Cancellation_Rate": 12.1, "Carrier_Cancellations": 4, "Average_Departure_Delay": 77.7}, {"Departure_Hour": 15, "Scheduled_Flights": 56, "Cancellations": 15, "Cancellation_Rate": 26.8, "Carrier_Cancellations": 13, "Average_Departure_Delay": 129.0}, {"Departure_Hour": 16, "Scheduled_Flights": 45, "Cancellations": 5, "Cancellation_Rate": 11.1, "Carrier_Cancellations": 4, "Average_Departure_Delay": 114.2}, {"Departure_Hour": 17, "Scheduled_Flights": 51, "Cancellations": 12, "Cancellation_Rate": 23.5, "Carrier_Cancellations": 12, "Average_Departure_Delay": 113.7}, {"Departure_Hour": 18, "Scheduled_Flights": 25, "Cancellations": 2, "Cancellation_Rate": 8.0, "Carrier_Cancellations": 2, "Average_Departure_Delay": 74.5}, {"Departure_Hour": 19, "Scheduled_Flights": 49, "Cancellations": 5, "Cancellation_Rate": 10.2, "Carrier_Cancellations": 4, "Average_Departure_Delay": 69.3}, {"Departure_Hour": 20, "Scheduled_Flights": 42, "Cancellations": 4, "Cancellation_Rate": 9.5, "Carrier_Cancellations": 4, "Average_Departure_Delay": 77.5}, {"Departure_Hour": 21, "Scheduled_Flights": 50, "Cancellations": 7, "Cancellation_Rate": 14.0, "Carrier_Cancellations": 7, "Average_Departure_Delay": 68.0}, {"Departure_Hour": 22, "Scheduled_Flights": 46, "Cancellations": 4, "Cancellation_Rate": 8.7, "Carrier_Cancellations": 4, "Average_Departure_Delay": 73.7}, {"Departure_Hour": 23, "Scheduled_Flights": 23, "Cancellations": 2, "Cancellation_Rate": 8.7, "Carrier_Cancellations": 2, "Average_Departure_Delay": 47.7}]};
-const $=id=>document.getElementById(id);const fmt=n=>Number(n).toLocaleString('en-US');const pct=n=>Number(n).toFixed(2)+'%';const el=(name,attrs={})=>{let n=document.createElementNS('http://www.w3.org/2000/svg',name);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,v);return n};
-function comparison(){const mode=$('metric').value;let rows=DATA.comparison;const periods=['Rest of July','July 18-20'];let max=mode==='all'?11:9;let html='';for(let period of periods){html+=`<div class="bar-group"><div class="group-label">${period}</div>`;for(let group of ['Delta','Other Airlines']){let r=rows.find(x=>x.Period===period&&x.Airline_Group===group),num=mode==='all'?r.Cancellations:r.Carrier_Cancellations,rate=num/r.Flights*100;html+=`<div class="bar-row" title="${fmt(num)} / ${fmt(r.Flights)} scheduled flights"><span>${group}</span><div class="track"><div class="fill" style="width:${rate/max*100}%;background:${group==='Delta'?'var(--blue)':'var(--light)'}"></div></div><span class="number">${pct(rate)}</span></div>`;}}$('comparison').innerHTML=html;let metric=mode==='all'?'all cancellations':'carrier-coded cancellations';$('comparisonNote').innerHTML=`Showing <strong>${metric}</strong> as a share of all scheduled departures. Hover over bars for numerators and denominators. Carrier code A does not prove preventability.`;}
-function drawPlot(id,tipId,rows,metric,type){let svg=$(id);svg.innerHTML='';let W=360,H=245,L=41,R=12,T=15,B=37,iw=W-L-R,ih=H-T-B;let vals=rows.map(r=>Number(r[metric]));let max=Math.max(...vals)*1.15||1;let y=v=>T+ih-v/max*ih;for(let j=0;j<=4;j++){let v=max*j/4,yy=y(v);svg.appendChild(el('line',{x1:L,y1:yy,x2:W-R,y2:yy,class:'grid'}));let tx=el('text',{x:L-7,y:yy+3,'text-anchor':'end'});tx.textContent=metric==='Cancellation_Rate'?v.toFixed(0)+'%':v.toFixed(0);svg.appendChild(tx)}let x=i=>L+(type==='daily'?(i/(rows.length-1))*iw:((i+.5)/rows.length)*iw);if(type==='daily'){let pts=vals.map((v,i)=>`${x(i)},${y(v)}`).join(' ');svg.appendChild(el('polyline',{points:pts,class:'line'}))}rows.forEach((r,i)=>{let val=vals[i],node=type==='daily'?el('circle',{cx:x(i),cy:y(val),r:5,class:'point',tabindex:0}):el('rect',{x:x(i)-iw/rows.length*.36,y:y(val),width:iw/rows.length*.72,height:T+ih-y(val),rx:2,class:'bar',tabindex:0});let date=type==='daily'?r.FL_DATE:`${String(r.Departure_Hour).padStart(2,'0')}:00`;let label=type==='daily'?`Jul ${Number(date.slice(-2))}`:String(r.Departure_Hour);if(type==='daily'||i%2===0){let tx=el('text',{x:x(i),y:H-18,'text-anchor':'middle'});tx.textContent=label;svg.appendChild(tx)}let show=()=>{$(tipId).innerHTML=type==='daily'?`<strong>${date}</strong> · ${fmt(r.Cancellations)} cancellations / ${fmt(r.Flights)} flights<br><span class="metric">${pct(r.Cancellation_Rate)}</span> cancelled · ${Number(r.Average_Departure_Delay).toFixed(1)} min avg departure delay`:`<strong>${date} scheduled departure</strong> · ${fmt(r.Cancellations)} / ${fmt(r.Scheduled_Flights)} cancelled<br><span class="metric">${Number(r.Cancellation_Rate).toFixed(1)}%</span> cancelled · ${r.Carrier_Cancellations} carrier-coded · ${Number(r.Average_Departure_Delay).toFixed(1)} min avg departure delay`};node.addEventListener('mouseenter',show);node.addEventListener('focus',show);node.addEventListener('click',show);svg.appendChild(node)});let peak=rows.reduce((a,b)=>Number(b[metric])>Number(a[metric])?b:a);$(tipId).innerHTML=`Peak ${metric==='Cancellation_Rate'?'cancellation rate':'average departure delay'}: <strong>${type==='daily'?peak.FL_DATE:peak.Departure_Hour+':00'}</strong> · <span class="metric">${Number(peak[metric]).toFixed(1)}${metric==='Cancellation_Rate'?'%':' min'}</span>. Select a chart mark for details.`;}
-function render(){comparison();drawPlot('dailyPlot','dailyTip',DATA.daily,$('dailyMetric').value,'daily');drawPlot('hourPlot','hourTip',DATA.hourly,$('hourMetric').value,'hourly')}['metric','dailyMetric','hourMetric'].forEach(id=>$(id).addEventListener('change',render));render();</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Delta ATL | Disruption Readiness Dashboard</title>
+  <style>
+    /* DESIGN: Shared Delta-inspired palette and responsive layout. */
+    :root { --navy:#102d54; --ink:#14233b; --muted:#586a82; --red:#c8102e;
+            --light:#8eaacb; --bg:#eef2f7; --line:#d9e1eb; --white:#fff; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:system-ui,-apple-system,Segoe UI,sans-serif; }
+    header { background:linear-gradient(110deg,#071c3b,#173f70); border-bottom:5px solid var(--red);
+             color:white; padding:28px max(20px,calc((100vw - 1200px)/2)); }
+    .brand { font-weight:850; font-size:20px; letter-spacing:3px; }
+    .brand:before { content:'▲'; color:var(--red); margin-right:12px; }
+    header h1 { font-size:clamp(24px,3vw,34px); margin:12px 0 6px; }
+    header p { margin:0; color:#d0dceb; font-size:14px; }
+    main { max-width:1240px; padding:22px; margin:auto; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .grid > article:first-child { grid-column:1 / -1; }
+    .two { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+    .card { background:white; border:1px solid var(--line); border-top:2px solid #d9e3f0;
+            border-radius:12px; padding:20px; box-shadow:0 2px 10px #15233d08; }
+    .intro { border-left:5px solid var(--red); }
+    .recommendation { border-left:5px solid var(--red); background:#fff; }
+    .recommendation h2 { font-size:clamp(27px,3vw,32px); margin-top:9px; line-height:1.2; }
+    .recommendation p { margin:9px 0; }
+    h2 { color:var(--navy); font-size:18px; margin:0 0 10px; }
+    h3 { color:var(--navy); font-size:15px; margin:0 0 8px; }
+    p { line-height:1.55; }
+    .small { font-size:12px; color:var(--muted); line-height:1.55; }
+    .eyebrow { text-transform:uppercase; letter-spacing:1.3px; font-size:11px; font-weight:750; color:var(--muted); }
+    .value { font-size:32px; font-weight:780; margin:6px 0; }
+    /* Matching hierarchy and spacing across both executive overview cards. */
+    .two .card .value, .two .card h2 { font-size:21px; font-weight:700; line-height:1.3; margin:6px 0 14px; }
+    .two .card > p { margin:0 0 14px; }
+    .two .card > p:last-child { margin-bottom:0; }
+    .kpis { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:16px 0; }
+    /* All four executive KPI cards receive the same subtle navy border. */
+    .kpi { padding:16px; border:2px solid var(--navy); border-radius:10px; background:#f6f8fb; }
+    .kpi strong { display:block; font-size:26px; color:var(--navy); margin:7px 0; }
+    .section { margin-top:18px; }
+    .section-head { margin:0 0 12px; }
+    .section-head h2 { margin-bottom:4px; }
+    label { display:inline-flex; flex-direction:column; gap:6px; font-size:12px; font-weight:650; }
+    select { padding:9px 10px; border:1px solid #c7d3e1; border-radius:8px; color:var(--ink); background:white; }
+    .bar-block { margin:14px 0 22px; }
+    .bar-title { font-size:12px; font-weight:750; margin-bottom:10px; }
+    .bar-row { display:grid; grid-template-columns:100px minmax(0,1fr) 64px; align-items:center; gap:9px; font-size:12px; margin:8px 0; }
+    .track { height:19px; background:#eef2f7; border-radius:4px; overflow:hidden; }
+    .fill { height:100%; border-radius:4px; }
+    .bar-number { text-align:right; font-weight:750; }
+    .legend { font-size:12px; color:var(--muted); }
+    .swatch { display:inline-block; width:10px; height:10px; margin:0 5px 0 12px; border-radius:2px; }
+    .swatch:first-child { margin-left:0; }
+    svg.plot { width:100%; height:310px; overflow:visible; }
+    svg.plot text { fill:#5e6d80; font-size:11px; font-family:inherit; }
+    svg.plot text.zone-label { font-size:12px; font-weight:800; fill:#a4213b; }
+    svg.plot text.zone-label.after { fill:#234d7c; }
+    svg.plot text.value-label { font-size:12px; font-weight:750; fill:var(--navy); }
+    svg.plot text.peak-label { font-size:15px; font-weight:850; fill:var(--red); }
+    .reason-key { margin-top:14px; padding:12px 14px; border:1px solid var(--line); border-radius:8px; background:#f8fafc; }
+    .reason-key h3 { margin:0 0 9px; font-size:14px; }
+    .reason-key-items { display:flex; flex-wrap:wrap; gap:8px 16px; font-size:12px; line-height:1.5; }
+    .reason-key-items span { display:inline-flex; align-items:baseline; gap:6px; }
+    .reason-key-items strong { display:inline-block; min-width:17px; color:var(--navy); }
+    .reason-key .small { margin:9px 0 0; }
+    .human-impact { margin-top:12px; padding:13px 16px; background:#f6f8fb; border-left:4px solid var(--navy); border-radius:6px; line-height:1.5; font-size:14px; }
+    .human-impact strong { color:var(--navy); }
+    .chart-insight { margin:14px 0 4px; padding:12px 16px; border-left:4px solid var(--red); background:#f6f8fb; border-radius:6px; font-size:14px; line-height:1.5; }
+    svg.plot .axis-grid { stroke:#e7edf4; stroke-width:1; }
+    svg.plot .series-line { fill:none; stroke:var(--navy); stroke-width:2.5; }
+    svg.plot .point { fill:var(--navy); stroke:white; stroke-width:2; cursor:pointer; }
+    svg.plot .point:hover,svg.plot .point:focus { fill:var(--red); stroke:var(--navy); stroke-width:2; outline:none; }
+    svg.plot .zone-label { font-size:12px; font-weight:750; letter-spacing:.4px; }
+    svg.plot .value-label { font-size:12px; font-weight:750; fill:var(--navy); }
+    svg.plot .peak-label { font-size:13px; font-weight:800; fill:var(--red); }
+    svg.plot .column { fill:var(--navy); cursor:pointer; }
+    .tooltip { background:#f0f5fb; border-radius:8px; padding:10px; min-height:66px; font-size:12px; line-height:1.55; margin-top:10px; }
+    .note { border-top:1px solid var(--line); padding-top:11px; margin-top:12px; font-size:12px; color:var(--muted); line-height:1.55; }
+    .footer { color:var(--muted); font-size:12px; line-height:1.65; padding:18px 0; }
+    @media(max-width:950px) { .grid { grid-template-columns:1fr 1fr; } .kpis { grid-template-columns:1fr 1fr; } }
+    @media(max-width:650px) { main { padding:12px; } .grid,.two { grid-template-columns:1fr; } .grid > article:first-child { grid-column:auto; } .kpis { grid-template-columns:1fr 1fr; } .card { padding:16px; } }
+  </style>
+</head>
+<body>
+  <!-- HEADER: Dashboard identity and audience. -->
+  <header>
+    <div class="brand">DELTA</div>
+    <h1>Disruption Readiness | Atlanta Hub</h1>
+    <p>Historical BTS data · July 2026 · Decision support for ATL Airport Operations</p>
+  </header>
+  <main>
+    <!-- EXECUTIVE RECOMMENDATION: Placed first so management sees the action before the analysis. -->
+    <section class="card recommendation" aria-label="Executive recommendation">
+      <div class="eyebrow">Management Recommendation</div>
+      <h2>Use the Disruption to Improve Everyday Reliability</h2>
+      <p><strong>Recommended action for Delta ATL operations leadership:</strong> Compare internal operating records from July 17–20 with the rest of July to identify factors that may contribute to cancellations and delays in both periods. Use the findings to prioritize reliability improvements, rather than assuming the disruption has one known cause.</p>
+      <div class="human-impact"><strong>Why It Matters to Travelers</strong><div>A canceled or delayed flight is more than an operational statistic. It can mean missed connections, disrupted family plans, overnight stays, and uncertainty about getting home. More dependable departures mean fewer people facing those disruptions.</div></div>
+      <p class="small"><strong>Why look beyond the disruption?</strong> In the rest of July, 131 of 227 Delta ATL cancellations (57.7%) were coded as airline-attributed. That is <em>57.7% of cancellations</em>, not 57.7% of flights: those 131 cancellations represented <em>0.69% of 18,930 scheduled flights</em>. The BTS code does not tell us what specifically went wrong or whether a cancellation was preventable.</p>
+    </section>
+
+    <!-- SECTION 1: Context and baseline definitions, immediately after the recommendation. -->
+    <section class="two" aria-label="Executive overview">
+      <div class="card intro">
+        <div class="eyebrow">The Executive Decision</div>
+        <div class="value">What Can Delta Learn From the July Disruption?</div>
+        <p>Look for lessons from the July disruption that could make ordinary travel days more reliable, too.</p>
+        <p class="small">This dashboard looks back at July 2026. It does not predict future disruptions or establish why a specific flight was canceled.</p>
+      </div>
+      <div class="card">
+        <div class="eyebrow">Why the Baseline Matters</div>
+        <h2>Compare Disruption Against Other July Dates</h2>
+        <p>The Disruption Period is <strong>July 17–20</strong>. The Rest of July comparison period is <strong>July 1–16 and 21–31</strong>.</p>
+        <p class="small">These are descriptive comparison periods, not a claim that every baseline day was normal.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Quick numbers to orient executives before detailed charts. -->
+    <section class="section card" aria-label="Delta ATL headline metrics">
+      <h2>Delta at Atlanta (ATL) | July 2026</h2>
+      <p class="small">Each percentage below shows the share of <strong>scheduled Delta ATL departures</strong> that were canceled, either for any reason or for an airline-attributed reason.</p>
+      <div class="kpis" id="headlineKpis"></div>
+      <div class="note">Airline-attributed means BTS cancellation reason <strong>A</strong>. It does not establish that a cancellation was preventable or identify a specific crew or aircraft issue.</div>
+    </section>
+
+    <!-- SECTION 3: Main daily reliability chart, followed by two supporting comparisons. -->
+    <section class="section grid" aria-label="Interactive charts">
+      <!-- SECTION 4: Daily performance chart. -->
+      <article class="card">
+        <h2>1 · Disruption and Recovery</h2>
+        <p class="small">Follow how Delta departures were affected day by day, July 17–23. A disrupted departure is a flight that was <strong>canceled or left at least 15 minutes late</strong>. Choose another measure or select a date to explore the details.</p>
+        <label>Choose Daily Metric
+          <select id="dailyMetric">
+            <option value="Disrupted_Departure_Rate">Disrupted departure rate (%)</option>
+             <option value="Cancellation_Rate">Cancellation rate (%)</option>
+            <option value="Average_Departure_Delay">Average departure delay (min)</option>
+          </select>
+        </label>
+        <div class="chart-insight" id="dailyInsight" aria-live="polite"></div>
+        <svg class="plot" id="dailyPlot" viewBox="0 0 720 340" role="img" aria-label="Daily Delta ATL performance"></svg>
+        <div class="tooltip" id="dailyTip" aria-live="polite"></div>
+        <div class="reason-key" aria-label="BTS cancellation reason key">
+          <h3>Understanding BTS Cancellation Reasons</h3>
+          <div class="reason-key-items">
+            <span><strong>A</strong> Carrier (Airline-Attributed)</span>
+            <span><strong>B</strong> Weather</span>
+            <span><strong>C</strong> National Airspace System (NAS)</span>
+            <span><strong>D</strong> Security</span>
+          </div>
+          <p class="small">These are broad BTS cancellation categories, not verified root causes or evidence that a cancellation was preventable. The chart's colors indicate disruption periods and highlighted performance, not cancellation reasons.</p>
+        </div>
+        <div class="small" style="margin-top:8px">Disrupted departure rate counts each scheduled flight once if canceled or departed at least 15 minutes late. Delay categories are BTS-reported <strong>arrival-delay attribution</strong>, not the causes of average departure delay or proof of underlying operational root causes.</div>
+      </article>
+
+
+      <article class="card">
+        <h2>2 · Delta vs. Other Airlines at ATL</h2>
+        <p class="small">Was Delta affected differently from other airlines at Atlanta? Compare cancellation rates during July 17–20 with the rest of the month.</p>
+        <label>Choose Cancellation Metric
+          <select id="comparisonMetric">
+            <option value="all">All cancellations</option>
+            <option value="carrier">Airline-attributed cancellations (A)</option>
+          </select>
+        </label>
+        <div class="legend" style="margin-top:14px"><span class="swatch" style="background:var(--navy)"></span>Delta <span class="swatch" style="background:var(--light)"></span>Other airlines</div>
+        <div id="comparisonBars"></div>
+        <div class="note">This is a rate per scheduled departure, not a percentage of cancellations by reason.</div>
+      </article>
+
+          <!-- SECTION 6: Third analysis panel. -->
+      <article class="card" aria-label="Airline carrier-code baseline comparison">
+      <div class="section-head">
+        <h2>3 · Airline-Attributed Cancellations | Rest of July by Airline</h2>
+        <p class="small">Look beyond the disruption. Compare how often cancellations were airline-attributed across carriers, and distinguish the <strong>share of cancellations</strong> from the <strong>rate per scheduled flight</strong>.</p>
+      </div>
+      <label>Choose Airline-Attributed Cancellation Metric
+        <select id="baselineMetric">
+          <option value="share">Share of all cancellations (%)</option>
+          <option value="rate">Rate per scheduled departure (%)</option>
+        </select>
+      </label>
+      <div class="small" style="margin-top:12px" id="baselineDefinition"></div>
+      <div id="baselineBars"></div>
+      <div class="note">Includes airlines with at least 250 baseline ATL departures. Small samples may produce unstable percentages. Different networks, operating models and conditions limit direct causal comparisons. Other carriers remain in the embedded data.</div>
+      </article>
+    </section>
+
+    <div class="footer">Independent student analysis · Delta-inspired styling, not an official Delta product. Source: U.S. Bureau of Transportation Statistics (BTS), Reporting Carrier On-Time Performance, July 2026. Flight-based metrics use scheduled ATL departures. The daily panel covers Delta only. Airline baseline excludes July 17–20. All chart data are embedded below, so this page works as a single HTML file.</div>
+  </main>
+
+  <script>
+    /* DATA: Historical values from the team's R analyses.
+       "daily" and "hourly" retain the existing dashboard's data.
+       "airlineBaseline" comes from the team's ATL July analysis excluding July 17–20.
+       Full-July counts are also embedded to derive July 17–20 consistently. */
+    const DATA = {
+  "daily": [
+    {
+        "FL_DATE": "2026-07-17",
+         "Disrupted_Departure_Rate": 54.0,
+        "Flights": 742,
+        "Cancellations": 13,
+        "Cancellation_Rate": 1.75,
+        "Average_Departure_Delay": 50.3,
+        "Cancellation_Reasons": {
+            "A": 10,
+            "B": 3,
+            "C": 0,
+            "D": 0
+        },
+        "Arrival_Delay_Cause_Minutes": {
+            "Carrier": 12223,
+            "Weather": 3417,
+            "NAS": 7694,
+            "Security": 75,
+            "Late_Aircraft": 15630
+        }
+    },
+    {
+        "FL_DATE": "2026-07-18",
+         "Disrupted_Departure_Rate": 43.8,
+        "Flights": 621,
+        "Cancellations": 55,
+        "Cancellation_Rate": 8.86,
+        "Average_Departure_Delay": 28.4,
+        "Cancellation_Reasons": {
+            "A": 32,
+            "B": 23,
+            "C": 0,
+            "D": 0
+        },
+        "Arrival_Delay_Cause_Minutes": {
+            "Carrier": 9024,
+            "Weather": 401,
+            "NAS": 3480,
+            "Security": 0,
+            "Late_Aircraft": 2518
+        }
+    },
+    {
+        "FL_DATE": "2026-07-19",
+         "Disrupted_Departure_Rate": 67.2,
+        "Flights": 740,
+        "Cancellations": 103,
+        "Cancellation_Rate": 13.92,
+        "Average_Departure_Delay": 58.1,
+        "Cancellation_Reasons": {
+            "A": 97,
+            "B": 6,
+            "C": 0,
+            "D": 0
+        },
+        "Arrival_Delay_Cause_Minutes": {
+            "Carrier": 15540,
+            "Weather": 5017,
+            "NAS": 2852,
+            "Security": 55,
+            "Late_Aircraft": 12051
+        }
+    },
+    {
+        "FL_DATE": "2026-07-20",
+         "Disrupted_Departure_Rate": 32.8,
+        "Flights": 741,
+        "Cancellations": 33,
+        "Cancellation_Rate": 4.45,
+        "Average_Departure_Delay": 13.3,
+        "Cancellation_Reasons": {
+            "A": 33,
+            "B": 0,
+            "C": 0,
+            "D": 0
+        },
+        "Arrival_Delay_Cause_Minutes": {
+            "Carrier": 5254,
+            "Weather": 98,
+            "NAS": 2141,
+            "Security": 26,
+            "Late_Aircraft": 2133
+        }
+    },
+    {
+        "FL_DATE": "2026-07-21",
+         "Disrupted_Departure_Rate": 28.1,
+        "Flights": 701,
+        "Cancellations": 30,
+        "Cancellation_Rate": 4.28,
+        "Average_Departure_Delay": 17.8,
+        "Cancellation_Reasons": {
+            "A": 3,
+            "B": 24,
+            "C": 3,
+            "D": 0
+        },
+        "Arrival_Delay_Cause_Minutes": {
+            "Carrier": 6791,
+            "Weather": 414,
+            "NAS": 4881,
+            "Security": 0,
+            "Late_Aircraft": 1202
+        }
+    },
+    {
+        "FL_DATE": "2026-07-22",
+         "Disrupted_Departure_Rate": 17.9,
+        "Flights": 704,
+        "Cancellations": 7,
+        "Cancellation_Rate": 0.99,
+        "Average_Departure_Delay": 5.5,
+        "Cancellation_Reasons": {
+            "A": 7,
+            "B": 0,
+            "C": 0,
+            "D": 0
+        },
+        "Arrival_Delay_Cause_Minutes": {
+            "Carrier": 2554,
+            "Weather": 13,
+            "NAS": 802,
+            "Security": 0,
+            "Late_Aircraft": 981
+        }
+    },
+    {
+        "FL_DATE": "2026-07-23",
+         "Disrupted_Departure_Rate": 20.6,
+        "Flights": 742,
+        "Cancellations": 0,
+        "Cancellation_Rate": 0.0,
+        "Average_Departure_Delay": 8.3,
+        "Cancellation_Reasons": {
+            "A": 0,
+            "B": 0,
+            "C": 0,
+            "D": 0
+        },
+        "Arrival_Delay_Cause_Minutes": {
+            "Carrier": 4179,
+            "Weather": 0,
+            "NAS": 1827,
+            "Security": 0,
+            "Late_Aircraft": 1215
+        }
+    }
+],
+  "airlineBaseline": [
+    {
+      "code": "DL",
+      "flights": 18930,
+      "cancellations": 227,
+      "carrier": 131,
+      "fullFlights": 21774,
+      "fullCancellations": 431,
+      "fullCarrier": 303
+    },
+    {
+      "code": "F9",
+      "flights": 1718,
+      "cancellations": 78,
+      "carrier": 29,
+      "fullFlights": 1975,
+      "fullCancellations": 101,
+      "fullCarrier": 44
+    },
+    {
+      "code": "WN",
+      "flights": 1181,
+      "cancellations": 9,
+      "carrier": 1,
+      "fullFlights": 1353,
+      "fullCancellations": 9,
+      "fullCarrier": 1
+    },
+    {
+      "code": "UA",
+      "flights": 626,
+      "cancellations": 21,
+      "carrier": 5,
+      "fullFlights": 716,
+      "fullCancellations": 26,
+      "fullCarrier": 6
+    },
+    {
+      "code": "AA",
+      "flights": 613,
+      "cancellations": 13,
+      "carrier": 4,
+      "fullFlights": 706,
+      "fullCancellations": 14,
+      "fullCarrier": 4
+    },
+    {
+      "code": "OO",
+      "flights": 445,
+      "cancellations": 9,
+      "carrier": 1,
+      "fullFlights": 508,
+      "fullCancellations": 10,
+      "fullCarrier": 1
+    },
+    {
+      "code": "OH",
+      "flights": 271,
+      "cancellations": 23,
+      "carrier": 2,
+      "fullFlights": 311,
+      "fullCancellations": 28,
+      "fullCarrier": 2
+    },
+    {
+      "code": "B6",
+      "flights": 264,
+      "cancellations": 22,
+      "carrier": 6,
+      "fullFlights": 306,
+      "fullCancellations": 31,
+      "fullCarrier": 7
+    },
+    {
+      "code": "YX",
+      "flights": 218,
+      "cancellations": 21,
+      "carrier": 0,
+      "fullFlights": 246,
+      "fullCancellations": 27,
+      "fullCarrier": 0
+    },
+    {
+      "code": "AS",
+      "flights": 100,
+      "cancellations": 2,
+      "carrier": 2,
+      "fullFlights": 115,
+      "fullCancellations": 2,
+      "fullCarrier": 2
+    },
+    {
+      "code": "MQ",
+      "flights": 51,
+      "cancellations": 0,
+      "carrier": 0,
+      "fullFlights": 58,
+      "fullCancellations": 0,
+      "fullCarrier": 0
+    }
+  ]
+};
+
+    const byId = id => document.getElementById(id);
+    const number = value => Number(value).toLocaleString('en-US');
+    const percent = value => `${Number(value).toFixed(2)}%`;
+    const safeDivide = (numerator, denominator) => denominator ? numerator / denominator * 100 : 0;
+
+    // DATA HELPERS: Derive comparable periods from the same underlying July counts.
+    function groupTotals(group, period) {
+      const selected = DATA.airlineBaseline.filter(row => group === 'Delta' ? row.code === 'DL' : row.code !== 'DL');
+      return selected.reduce((totals, row) => {
+        const isDisruption = period === 'Disruption';
+        totals.flights += isDisruption ? row.fullFlights - row.flights : row.flights;
+        totals.cancellations += isDisruption ? row.fullCancellations - row.cancellations : row.cancellations;
+        totals.carrier += isDisruption ? row.fullCarrier - row.carrier : row.carrier;
+        return totals;
+      }, { flights:0, cancellations:0, carrier:0 });
+    }
+
+    // CHART 0: Four headline rates for Delta ATL.
+    function renderHeadlines() {
+      const base = groupTotals('Delta','Baseline');
+      const disruption = groupTotals('Delta','Disruption');
+             const metrics = [
+         ['Rest of July · All Cancellations', safeDivide(base.cancellations,base.flights), `${number(base.cancellations)} / ${number(base.flights)} departures`],
+         ['Rest of July · Airline-Attributed', safeDivide(base.carrier,base.flights), `${number(base.carrier)} / ${number(base.flights)} departures`],
+         ['Disruption Period · All Cancellations', safeDivide(disruption.cancellations,disruption.flights), `${number(disruption.cancellations)} / ${number(disruption.flights)} departures`],
+         ['Disruption Period · Airline-Attributed', safeDivide(disruption.carrier,disruption.flights), `${number(disruption.carrier)} / ${number(disruption.flights)} departures`]
+      ];
+      byId('headlineKpis').innerHTML = metrics.map(([label,value,detail]) =>
+        `<div class="kpi"><div class="eyebrow">${label}</div><strong>${percent(value)}</strong><div class="small">${detail}</div></div>`
+      ).join('');
+    }
+
+    // CHART 1: All vs. airline-attributed cancellation rates by airline group and period.
+    function renderComparison() {
+      const mode = byId('comparisonMetric').value;
+      const periods = [['Baseline','Rest of July · July 1–16 and 21–31'],['Disruption','Disruption Period · July 17–20']];
+      const maxRate = Math.max(1,...periods.flatMap(([period]) => ['Delta','Other airlines'].map(group => {
+        const totals = groupTotals(group,period);
+        return safeDivide(mode === 'carrier' ? totals.carrier : totals.cancellations, totals.flights);
+      }))) * 1.08;
+      byId('comparisonBars').innerHTML = periods.map(([period,title]) => {
+        const bars = ['Delta','Other airlines'].map(group => {
+          const totals = groupTotals(group,period);
+          const count = mode === 'carrier' ? totals.carrier : totals.cancellations;
+          const rate = safeDivide(count,totals.flights);
+          const color = group === 'Delta' ? 'var(--navy)' : 'var(--light)';
+          return `<div class="bar-row" title="${number(count)} / ${number(totals.flights)} departures"><span>${group}</span><div class="track"><div class="fill" style="width:${rate/maxRate*100}%;background:${color}"></div></div><span class="bar-number">${percent(rate)}</span></div>`;
+        }).join('');
+        return `<div class="bar-block"><div class="bar-title">${title}</div>${bars}</div>`;
+      }).join('');
+    }
+
+    // CHART 2: Self-contained SVG line chart. No external libraries.
+    function svgElement(tag, attrs = {}) {
+      const node = document.createElementNS('http://www.w3.org/2000/svg',tag);
+      for (const [name,value] of Object.entries(attrs)) node.setAttribute(name,value);
+      return node;
+    }
+    function renderPlot(svgId,tipId,rows,metric,kind) {
+      const svg = byId(svgId);
+      svg.innerHTML = '';
+      const W=720,H=340,L=52,R=24,T=56,B=46,iw=W-L-R,ih=H-T-B;
+      const values = rows.map(row => Number(row[metric]));
+      const maximum = Math.max(...values)*1.15 || 1;
+      const y = value => T+ih-(value/maximum)*ih;
+      const x = index => L+(kind==='daily' ? index/(rows.length-1)*iw : (index+.5)/rows.length*iw);
+      if (kind==='daily') {
+        // The first four dates (Jul 17–20) are the defined disruption window.
+        const boundary=(x(3)+x(4))/2;
+        svg.appendChild(svgElement('rect',{x:L,y:T,width:boundary-L,height:ih,fill:'#fce9ed',opacity:'.85'}));
+        svg.appendChild(svgElement('rect',{x:boundary,y:T,width:W-R-boundary,height:ih,fill:'#eaf2fb',opacity:'.85'}));
+        svg.appendChild(svgElement('line',{x1:boundary,y1:T,x2:boundary,y2:T+ih,stroke:'#8495a9','stroke-dasharray':'5 4'}));
+        const left=svgElement('text',{x:(L+boundary)/2,y:26,'text-anchor':'middle',class:'zone-label'});
+        left.textContent='DISRUPTION · JUL 17–20';left.setAttribute('fill','#a4213b');svg.appendChild(left);
+        const right=svgElement('text',{x:(boundary+W-R)/2,y:26,'text-anchor':'middle',class:'zone-label'});
+        right.textContent='AFTER JUL 20';right.setAttribute('class','zone-label after');svg.appendChild(right);
+      }
+      for (let step=0; step<=4; step++) {
+        const value=maximum*step/4, yy=y(value);
+        svg.appendChild(svgElement('line',{x1:L,y1:yy,x2:W-R,y2:yy,class:'axis-grid'}));
+        const label=svgElement('text',{x:L-7,y:yy+3,'text-anchor':'end'});
+        label.textContent=value.toFixed(0)+(metric!=='Average_Departure_Delay'?'%':'');
+        svg.appendChild(label);
+      }
+      if (kind==='daily') {
+        const points=values.map((value,index)=>`${x(index)},${y(value)}`).join(' ');
+        svg.appendChild(svgElement('polyline',{points,class:'series-line'}));
+      }
+      rows.forEach((row,index) => {
+        const value=values[index];
+        const node=kind==='daily'
+          ? svgElement('circle',{cx:x(index),cy:y(value),r:5,class:'point',tabindex:0})
+          : svgElement('rect',{x:x(index)-iw/rows.length*.36,y:y(value),width:iw/rows.length*.72,height:T+ih-y(value),rx:2,class:'column',tabindex:0});
+        const label=kind==='daily' ? `Jul ${Number(row.FL_DATE.slice(-2))}` : String(row.Departure_Hour);
+        if (kind==='daily' || index%2===0) {
+          const tick=svgElement('text',{x:x(index),y:H-18,'text-anchor':'middle'});
+          tick.textContent=label;
+          svg.appendChild(tick);
+        }
+        const show=()=>{
+          if (kind==='daily') {
+            // Cancellation categories count canceled flights; delay categories are
+            // BTS-attributed arrival-delay minutes, not departure-delay causes.
+            const c=row.Cancellation_Reasons;
+            const d=row.Arrival_Delay_Cause_Minutes;
+            const reasonText=`Carrier (A): ${number(c.A)} · Weather (B): ${number(c.B)} · NAS (C): ${number(c.C)} · Security (D): ${number(c.D)}`;
+            const delayText=`Carrier: ${number(d.Carrier)} · Weather: ${number(d.Weather)} · NAS: ${number(d.NAS)} · Security: ${number(d.Security)} · Late aircraft: ${number(d.Late_Aircraft)}`;
+            byId(tipId).innerHTML=`<strong>${row.FL_DATE}</strong> · ${number(row.Cancellations)} cancellations / ${number(row.Flights)} departures<br>`+
+              `<strong>${percent(row.Disrupted_Departure_Rate)}</strong> canceled or departed 15+ min late · ${percent(row.Cancellation_Rate)} canceled · ${row.Average_Departure_Delay.toFixed(1)} min average departure delay`+
+              `<div style="margin-top:8px"><strong>Cancellation reasons (flight counts)</strong><br>${reasonText}</div>`+
+              `<div style="margin-top:8px"><strong>Reported arrival-delay cause minutes</strong><br>${delayText}</div>`;
+          } else {
+            byId(tipId).innerHTML=`<strong>${String(row.Departure_Hour).padStart(2,'0')}:00 departures</strong> · ${number(row.Cancellations)} cancellations / ${number(row.Scheduled_Flights)} flights<br><strong>${percent(row.Cancellation_Rate)}</strong> cancelled · ${row.Carrier_Cancellations} airline-attributed · ${row.Average_Departure_Delay.toFixed(1)} min average departure delay`;
+          }
+        };
+        if (kind==='daily') {
+          const peakIndex=values.indexOf(Math.max(...values));
+          const peak=index===peakIndex;
+          const pointLabel=svgElement('text',{x:x(index),y:Math.max(T+14,y(value)-13),'text-anchor':'middle',class:peak?'peak-label':'value-label'});
+          pointLabel.textContent=`${value.toFixed(1)}${metric==='Average_Departure_Delay'?'m':'%'}`;
+          svg.appendChild(pointLabel);
+          if (peak) {
+            node.setAttribute('r','7');node.setAttribute('style','fill:var(--red)');
+          }
+        }
+        ['mouseenter','focus','click'].forEach(event=>node.addEventListener(event,show));
+        svg.appendChild(node);
+      });
+      const peak=rows.reduce((best,row)=>Number(row[metric])>Number(best[metric])?row:best);
+      if (kind==='daily') {
+        const suffix=metric==='Average_Departure_Delay'?' min':'%';
+        const peakIndex=values.indexOf(Math.max(...values));
+        const lowAfter=rows.slice(4).reduce((best,row)=>Number(row[metric])<Number(best[metric])?row:best);
+        const title=metric==='Disrupted_Departure_Rate'?'Disrupted departures':metric==='Cancellation_Rate'?'Cancellations':'Average departure delay';
+        byId('dailyInsight').innerHTML=`<strong>${title} peaked July ${Number(rows[peakIndex].FL_DATE.slice(-2))} at ${values[peakIndex].toFixed(1)}${suffix}.</strong> By July ${Number(lowAfter.FL_DATE.slice(-2))}, the measure was ${Number(lowAfter[metric]).toFixed(1)}${suffix}. Improvement does not establish a return to normal.`;
+      }
+      byId(tipId).innerHTML=`Peak ${metric==='Disrupted_Departure_Rate'?'disrupted departure rate':metric==='Cancellation_Rate'?'cancellation rate':'average departure delay'}: <strong>${kind==='daily'?peak.FL_DATE:peak.Departure_Hour+':00'}</strong> · <strong>${Number(peak[metric]).toFixed(1)}${metric!=='Average_Departure_Delay'?'%':' min'}</strong>. Select a chart mark for details.`;
+    }
+
+    // CHART 3: Carrier-code reason mix (share) versus airline-attributed flight rate.
+    function renderBaseline() {
+      const metric=byId('baselineMetric').value;
+      const eligible=DATA.airlineBaseline.filter(row=>row.flights>=250 && row.cancellations>0);
+      const value=row=>metric==='share'
+        ? safeDivide(row.carrier,row.cancellations)
+        : safeDivide(row.carrier,row.flights);
+      eligible.sort((a,b)=>value(b)-value(a));
+      const max=Math.max(...eligible.map(value))*1.08 || 1;
+      const names={DL:'Delta',F9:'Frontier',WN:'Southwest',UA:'United',AA:'American',OO:'SkyWest',OH:'PSA',B6:'JetBlue'};
+      byId('baselineDefinition').textContent=metric==='share'
+        ? 'Share = airline-attributed cancellations ÷ all cancellations. This describes the mix of cancellation reasons.'
+        : 'Rate = airline-attributed cancellations ÷ scheduled departures. This describes how often a scheduled flight is airline-attributed canceled.';
+      byId('baselineBars').innerHTML=eligible.map(row=>{
+        const val=value(row);
+        const denominator=metric==='share'?row.cancellations:row.flights;
+        const color=row.code==='DL'?'var(--red)':'var(--light)';
+        return `<div class="bar-row" title="${number(row.carrier)} / ${number(denominator)}"><span>${names[row.code]||row.code}</span><div class="track"><div class="fill" style="width:${val/max*100}%;background:${color}"></div></div><span class="bar-number">${percent(val)}</span></div>`;
+      }).join('');
+    }
+
+    // INITIALIZATION: Each control updates its panel.
+    function renderDaily() { renderPlot('dailyPlot','dailyTip',DATA.daily,byId('dailyMetric').value,'daily'); }
+    byId('comparisonMetric').addEventListener('change',renderComparison);
+    byId('dailyMetric').addEventListener('change',renderDaily);
+    byId('baselineMetric').addEventListener('change',renderBaseline);
+    renderHeadlines();
+    renderComparison();
+    renderDaily();
+    renderBaseline();
+  </script>
+</body>
+</html>
